@@ -9,16 +9,12 @@ class UpperDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DescriptionFrame(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          //id_boat
-          DescriptionBox(text: 'nazwa łodzi'),
-          //bottles in use
-          DescriptionBox(text: 'uzywane butle [szt.]'),
-          //available bootles
-          DescriptionBox(text: 'dostępne butle [szt.]'),
-          //id_city
           DescriptionBox(text: 'miejscowość'),
+          DescriptionBox(text: 'nazwa łodzi'),
+          DescriptionBox(text: 'szczegóły'),
         ],
       ),
     );

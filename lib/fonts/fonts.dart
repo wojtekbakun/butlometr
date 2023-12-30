@@ -16,6 +16,7 @@ class NormalText extends StatelessWidget {
       style: GoogleFonts.jetBrainsMono(
         textStyle: TextStyle(
           fontWeight: FontSettings().normalWeight,
+          fontSize: 14,
         ),
       ),
     );

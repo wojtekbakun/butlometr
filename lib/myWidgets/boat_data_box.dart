@@ -11,13 +11,8 @@ class BoatDataBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Center(
-        child: NormalText(
-          text: text,
-        ),
-      ),
+    return NormalText(
+      text: text,
     );
   }
 }

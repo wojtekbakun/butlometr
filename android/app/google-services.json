@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "87633605635",
+    "firebase_url": "https://pbl3-9609b-default-rtdb.firebaseio.com",
+    "project_id": "pbl3-9609b",
+    "storage_bucket": "pbl3-9609b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87633605635:android:07f22b4c51393b78224a36",
+        "android_client_info": {
+          "package_name": "com.example.butlometr2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeDL_Z7tBRaU2I6I4NEkuHdyUnONkH2Ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
