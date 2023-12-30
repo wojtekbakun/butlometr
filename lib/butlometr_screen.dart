@@ -24,12 +24,13 @@ class ButlometrScreen extends StatelessWidget {
 }
 
 fetchDataHTTP() async {
-  var url = Uri.http('192.168.0.106:8000', '/');
+  var url = Uri.http('192.168.0.112:8000', '/');
   var response = await http.get(url);
   debugPrint('status: ${response.statusCode}');
   if (response.statusCode == 200) {
     var jsonResponse = convert.jsonDecode(response.body);
-    debugPrint('Ottzymany json: $jsonResponse.');
+    var id = jsonResponse as Map<String, dynamic>;
+    debugPrint('Ottzymany json: ${id["panels"]}.');
   } else {
     debugPrint('Request failed with status: ${response.statusCode}.');
   }
