@@ -1,9 +1,7 @@
-import 'package:butlometr2/firebase/boat_data.dart';
 import 'package:butlometr2/fonts/fonts.dart';
 import 'package:butlometr2/myWidgets/boat_data_box.dart';
 import 'package:butlometr2/myWidgets/smart_box.dart';
 import 'package:butlometr2/screens/panel_screen/panel_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class BoatDetails extends StatelessWidget {
@@ -22,16 +20,11 @@ class BoatDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (int i = 0; i < 1; i++)
-          BoatBox(
-            idCity: idCity,
-            idBoat: idBoat,
-            panels: panels,
-            timestamp: timestamp,
-          )
-      ],
+    return BoatBox(
+      idCity: idCity,
+      idBoat: idBoat,
+      panels: panels,
+      timestamp: timestamp,
     );
   }
 }
@@ -59,10 +52,7 @@ class BoatBox extends StatelessWidget {
         onTap: () => Navigator.push<void>(
           context,
           MaterialPageRoute<void>(
-            builder: (BuildContext context) => PanelScreen(
-              panels: panels,
-              timestamp: timestamp,
-            ),
+            builder: (BuildContext context) => const PanelScreen(),
           ),
         ),
         child: MainBox(

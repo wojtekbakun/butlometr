@@ -1,24 +1,19 @@
+import 'package:butlometr2/http/fetch_http.dart';
 import 'package:butlometr2/consts/colors.dart';
 import 'package:butlometr2/fonts/fonts.dart';
 import 'package:butlometr2/myWidgets/smart_box.dart';
 import 'package:butlometr2/screens/bottle_screen/bottle_dialog.dart';
 import 'package:butlometr2/screens/panel_screen/panel_description.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class PanelScreen extends StatelessWidget {
-  final Map<String, dynamic>? panels;
-  final String? timestamp;
-
   const PanelScreen({
     super.key,
-    this.panels,
-    this.timestamp,
   });
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('lenght: ${panels!.length}');
+    var panelsData = getLocalData();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
@@ -27,14 +22,39 @@ class PanelScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const PanelDescription(),
-            for (int i = 0; i < panels!.length; i++)
-              DetBox(
-                idPanel: panels?.keys.elementAt(i),
-                panels: panels,
-              ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              child: NormalText(text: 'odświezono: $timestamp'),
+            FutureBuilder(
+              future: panelsData,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  Map<String, dynamic>? panels = snapshot.data;
+                  if (panels == null) {
+                    return const Text('brak danych');
+                  }
+                  var timestamp = panels['timestamp'];
+                  return Column(
+                    children: [
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: panels['panels'].length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return DetBox(
+                            idPanel: panels["panels"].keys.elementAt(index)[6],
+                            panels: panels["panels"],
+                          );
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
+                        child: NormalText(text: 'odświezono: $timestamp'),
+                      ),
+                    ],
+                  );
+                }
+              },
             ),
           ],
         ),
@@ -63,12 +83,12 @@ class DetBox extends StatelessWidget {
                 : AppColors.accentColor
             : AppColors.inactiveColor
         : AppColors.darkColor;
-
     return color;
   }
 
   @override
   Widget build(BuildContext context) {
+    //debugPrint('\n IDPANEL: $idPanel');
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: MainBox(
@@ -96,21 +116,21 @@ class DetBox extends StatelessWidget {
                         onTap: () => bottleDialog(
                             context,
                             '$nrTank',
-                            panels?['panel$idPanel']['butla$nrTank']
+                            panels?['panel_$idPanel']?['tank_$nrTank']
                                 ?['id_rfid'],
-                            panels?['panel$idPanel']['butla$nrTank']
+                            panels?['panel_$idPanel']?['tank_$nrTank']
                                 ?['isInPlace'],
-                            panels?['panel$idPanel']['butla$nrTank']
+                            panels?['panel_$idPanel']?['tank_$nrTank']
                                 ?['isActive'],
-                            panels?['panel$idPanel']['butla$nrTank']
+                            panels?['panel_$idPanel']?['tank_$nrTank']
                                 ?['isInWater']),
                         child: StatusBoxDetails(
                           color: getColor(
-                              panels?['panel$idPanel']['butla$nrTank']
+                              panels?['panel_$idPanel']?['tank_$nrTank']
                                   ?['isActive'],
-                              panels?['panel$idPanel']['butla$nrTank']
+                              panels?['panel_$idPanel']?['tank_$nrTank']
                                   ?['isInPlace'],
-                              panels?['panel$idPanel']['butla$nrTank']
+                              panels?['panel_$idPanel']?['tank_$nrTank']
                                   ?['isInWater']),
                         ),
                       ),

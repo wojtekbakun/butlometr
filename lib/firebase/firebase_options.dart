@@ -44,41 +44,42 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCSFEJZREfg7RXY90vMsLdQjbS8ncnVKgI',
-    appId: '1:18935722220:web:ca5905b719fbbacd9a75c9',
-    messagingSenderId: '18935722220',
-    projectId: 'butlometr',
-    authDomain: 'butlometr.firebaseapp.com',
-    databaseURL: 'https://butlometr-default-rtdb.firebaseio.com',
-    storageBucket: 'butlometr.appspot.com',
+    apiKey: 'AIzaSyBaUXSQjTwVkd9RmqLFFyD9f2dX68Zh50Q',
+    appId: '1:87633605635:web:a0c2651c60ecd18d224a36',
+    messagingSenderId: '87633605635',
+    projectId: 'pbl3-9609b',
+    authDomain: 'pbl3-9609b.firebaseapp.com',
+    databaseURL: 'https://pbl3-9609b-default-rtdb.firebaseio.com',
+    storageBucket: 'pbl3-9609b.appspot.com',
+    measurementId: 'G-2WS26B3L1T',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDJ3AnrAK74Mq_4hSwHWfXbdR5Et9Vkr9A',
-    appId: '1:18935722220:android:dbb7510133dda99c9a75c9',
-    messagingSenderId: '18935722220',
-    projectId: 'butlometr',
-    databaseURL: 'https://butlometr-default-rtdb.firebaseio.com',
-    storageBucket: 'butlometr.appspot.com',
+    apiKey: 'AIzaSyDeDL_Z7tBRaU2I6I4NEkuHdyUnONkH2Ho',
+    appId: '1:87633605635:android:07f22b4c51393b78224a36',
+    messagingSenderId: '87633605635',
+    projectId: 'pbl3-9609b',
+    databaseURL: 'https://pbl3-9609b-default-rtdb.firebaseio.com',
+    storageBucket: 'pbl3-9609b.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCtGLUmTU2Ev9S5C3LoWIS7o2i-rxSinoo',
-    appId: '1:18935722220:ios:ac032c84a1f39ced9a75c9',
-    messagingSenderId: '18935722220',
-    projectId: 'butlometr',
-    databaseURL: 'https://butlometr-default-rtdb.firebaseio.com',
-    storageBucket: 'butlometr.appspot.com',
+    apiKey: 'AIzaSyCfrwBBljtYgdeIcHQ7DtHCgtFHkyEOpb4',
+    appId: '1:87633605635:ios:8858a9d264f11d80224a36',
+    messagingSenderId: '87633605635',
+    projectId: 'pbl3-9609b',
+    databaseURL: 'https://pbl3-9609b-default-rtdb.firebaseio.com',
+    storageBucket: 'pbl3-9609b.appspot.com',
     iosBundleId: 'com.example.butlometr2',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCtGLUmTU2Ev9S5C3LoWIS7o2i-rxSinoo',
-    appId: '1:18935722220:ios:251954a8195b99829a75c9',
-    messagingSenderId: '18935722220',
-    projectId: 'butlometr',
-    databaseURL: 'https://butlometr-default-rtdb.firebaseio.com',
-    storageBucket: 'butlometr.appspot.com',
+    apiKey: 'AIzaSyCfrwBBljtYgdeIcHQ7DtHCgtFHkyEOpb4',
+    appId: '1:87633605635:ios:0e5f543e7a705b55224a36',
+    messagingSenderId: '87633605635',
+    projectId: 'pbl3-9609b',
+    databaseURL: 'https://pbl3-9609b-default-rtdb.firebaseio.com',
+    storageBucket: 'pbl3-9609b.appspot.com',
     iosBundleId: 'com.example.butlometr2.RunnerTests',
   );
 }
