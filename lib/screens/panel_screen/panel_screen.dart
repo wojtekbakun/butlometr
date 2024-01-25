@@ -1,4 +1,3 @@
-import 'package:butlometr2/http/fetch_http.dart';
 import 'package:butlometr2/consts/colors.dart';
 import 'package:butlometr2/fonts/fonts.dart';
 import 'package:butlometr2/myWidgets/smart_box.dart';
@@ -7,13 +6,16 @@ import 'package:butlometr2/screens/panel_screen/panel_description.dart';
 import 'package:flutter/material.dart';
 
 class PanelScreen extends StatelessWidget {
+  final Future<dynamic>? future;
+  final int? clickedBoat;
   const PanelScreen({
     super.key,
+    this.future,
+    this.clickedBoat,
   });
 
   @override
   Widget build(BuildContext context) {
-    var panelsData = getLocalData();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
@@ -23,14 +25,16 @@ class PanelScreen extends StatelessWidget {
           children: [
             const PanelDescription(),
             FutureBuilder(
-              future: panelsData,
+              future: future,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
-                  Map<String, dynamic>? panels = snapshot.data;
+                  Map<String, dynamic>? panels = clickedBoat == null
+                      ? snapshot.data
+                      : snapshot.data[clickedBoat];
                   if (panels == null) {
                     return const Text('brak danych');
                   }

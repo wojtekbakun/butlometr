@@ -3,7 +3,6 @@ import 'package:butlometr2/http/get_data_from_firestore.dart';
 import 'package:butlometr2/screens/all_boat_screen/builder/box_builder.dart';
 import 'package:butlometr2/screens/all_boat_screen/builder/main_screen_description.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -28,20 +27,42 @@ class MainScreen extends StatelessWidget {
                     return Text('Error: ${snapshot.error}');
                   } else {
                     List<dynamic>? boatData = snapshot.data;
-                    debugPrint("${snapshot.data}");
+
                     if (boatData == null || boatData.isEmpty) {
                       return const Text('Brak danych');
                     }
-                    return ListView.builder(
-                      itemCount: boatData.length,
+
+                    // Create a set to keep track of unique id_boat values
+                    Set<String> uniqueBoats = {};
+
+                    // Create a list to store the filtered boat details
+                    List<Widget> boatDetailsList = [];
+
+                    // Iterate through the boatData list
+                    for (int index = 0; index < boatData.length; index++) {
+                      // Check if id_boat is unique, if not skip rendering
+                      if (uniqueBoats.contains(boatData[index]["id_boat"])) {
+                        continue; // Skip rendering
+                      } else {
+                        uniqueBoats.add(boatData[index]["id_boat"]);
+                        boatDetailsList.add(
+                          GestureDetector(
+                            child: BoatDetails(
+                              idCity: boatData[index]["id_city"],
+                              idBoat: boatData[index]["id_boat"],
+                              panels: boatData[index]["panels"],
+                              timestamp: boatData[index]["timestamp"],
+                              clickedBoat: index,
+                            ),
+                          ),
+                        );
+                      }
+                    }
+
+                    return ListView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => BoatDetails(
-                        idCity: boatData[index]["id_city"],
-                        idBoat: boatData[index]["id_boat"],
-                        panels: boatData[index]["panels"],
-                        timestamp: boatData[index]["timestamp"],
-                      ),
+                      children: boatDetailsList,
                     );
                   }
                 },

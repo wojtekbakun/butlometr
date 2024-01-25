@@ -1,11 +1,9 @@
-import 'package:butlometr2/fonts/fonts.dart';
+import 'package:butlometr2/http/fetch_http.dart';
 import 'package:butlometr2/http/put_http.dart';
 import 'package:butlometr2/myWidgets/buttons.dart';
-import 'package:butlometr2/myWidgets/smart_box.dart';
 import 'package:butlometr2/screens/all_boat_screen/logo/butlometr.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:butlometr2/screens/panel_screen/panel_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ButlometrScreen extends StatelessWidget {
   const ButlometrScreen({super.key});
@@ -28,9 +26,12 @@ class ButlometrScreen extends StatelessWidget {
                     text: 'panel lokalny',
                     icon: Icons.list_outlined,
                     onTap: () {
-                      Navigator.pushNamed(
+                      Navigator.push<void>(
                         context,
-                        '/panelScreen',
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) =>
+                              PanelScreen(future: getLocalData()),
+                        ),
                       );
                     },
                   ),
@@ -54,11 +55,6 @@ class ButlometrScreen extends StatelessWidget {
                         '/mainScreen',
                       );
                     },
-                  ),
-                  ButtonWithTextAndIcon(
-                    icon: Icons.download,
-                    text: 'Pobierz dane z chmury',
-                    onTap: () {},
                   ),
                 ],
               ),
